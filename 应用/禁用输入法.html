@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>禁用输入法</title>
+</head>
+
+<body>
+    <input type="text" value="不支持谷歌浏览器" id="input">
+    <script>
+        function banInputMethod(_elementArr) {
+            var arr = _elementArr,
+                self = this;
+            if (!(_elementArr instanceof Array)) {
+                arr = [_elementArr]
+            }
+            for (var i = 0, arrLen = arr.length; i < arrLen; i++) {
+                var arrI = arr[i]
+                console.log(arrI.value)
+                arrI.onkeyup = function () {
+                    var _v = this.value;
+                    this.value = _v.replace(/[\u4e00-\u9fa5]/g, "");
+                }
+                arrI.onblur = function () {
+                    var _v = this.value;
+                    this.value = _v.replace(/[\u4e00-\u9fa5]/g, "");
+                }
+            }
+        }
+        banInputMethod(document.getElementById('input'))
+    </script>
+</body>
+
+</html>

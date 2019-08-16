@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>安全作用域构造函数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//2019/8/16
+		function Person(name){
+			if(this instanceof Person){
+				this.name=name;
+			}else{
+				return new Person(name); 
+			}
+		}
+		function Teacher(name,leval){
+			if(this instanceof Teacher){
+				Person.call(this,name);
+			// if(this instanceof of())
+				this.leval=leval;
+			}
+			else{
+				return new Teacher(name,leval)
+			}
+
+		}
+		Teacher.prototype=new Person()
+		var t1=new Teacher('pzzz','new');
+		console.log(t1.name,t1.leval)
+		//普通构造函数存在的问题
+		// 当不使用new调用构造函数直接调用函数时，this的指向是指向windows，
+	</script>
+
+</body>
+</html>

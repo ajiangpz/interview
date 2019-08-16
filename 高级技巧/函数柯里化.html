@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数柯里化</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button id="btn" value="click me">点击</button>
+	<script type="text/javascript">
+		//思路：对传入的函数的参数进行排序。
+		function curry(fn){
+			var args=Array.prototype.slice.call(arguments,1);
+			return function(){
+				var innerArgs=Array.prototype.slice.call(arguments,0);
+				var finalArgs=args.concat(innerArgs);
+				return fn.apply(null,finalArgs);
+
+			}
+		}
+		function add(n1,n2){
+			return n1+n2;
+		}
+		curriedAdd=curry(add,2);
+		console.log(curriedAdd(5))
+		console.log(curriedAdd(9))
+		//bind函数其实就是柯里化
+		function bind(fn,context,arg){
+			var args=Array.prototype.slice.call(arguments,2);
+			return function(){
+				var innerArgs=Array.prototype.slice.call(arguments);
+				var finalArgs=args.concat(innerArgs);
+				return fn.apply(context,finalArgs);
+			}
+		}
+		//绑定事件处理函数
+		var handler={
+			msg:'event handler',
+			clickHandler:function(name){
+				console.log(this.msg+':'+name+':'+event.type)
+			}
+		}
+		var btn=document.getElementById('btn');
+		btn.addEventListener('click',bind(handler.clickHandler,handler,'my-btn'));
+	</script>
+</body>
+</html>

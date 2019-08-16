@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .left-fix {
+            width: 100%;
+            height: 100%;
+            margin-right: -200px;
+            float: left;
+        }
+
+        .left {
+            margin-right: 200px;
+            height: 100%;
+            background: blue;
+        }
+
+        .right {
+            width: 200px;
+            height: 100%;
+            background: greenyellow;
+            float: left;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="left-fix">
+        <div class="left">
+            我是左栏
+        </div>
+    </div>
+    <div class="right">我是右栏</div>
+</body>
+
+</html>

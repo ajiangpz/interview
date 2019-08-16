@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>复杂的背景图案</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.box-container{
+			display: flex;
+			justify-content: flex-start;
+			align-content: flex-start;
+			flex-flow: row wrap;
+			color: white;
+		}
+		.box-container>div{	
+			width: 200px;
+			height: 200px;
+			margin-bottom:  10px;
+			margin-right:  10px;
+			text-align: center;
+			line-height: 200px;
+		}
+		.box{
+
+			background: #58a;
+			background-image:linear-gradient(90deg,rgba(200,0,0,.5),rgba(200,0,0,.5), 50%,transparent 0),linear-gradient(rgba(200,0,0,.5),rgba(200,0,0,.5), 50%,transparent 0);
+			background-size: 40px 40px;
+		}
+		.box1{
+			background: #58a;
+			background-image: linear-gradient(90deg, lightgreen 1px,transparent 0),linear-gradient(lightgreen 1px,transparent 0);
+			background-size: 40px 40px; 
+		}
+		.box2{
+			background: #58a;
+			background-image: 
+			linear-gradient(90deg, lightgreen 1px,transparent 0),
+			linear-gradient(lightgreen 1px,transparent 0),
+			linear-gradient(90deg,lightgreen 2px,transparent 0),
+			linear-gradient(lightgreen 2px,transparent 0);
+			background-size: 40px 40px,40px 40px,80px 80px,80px 80px;
+		}
+		.box3{
+			background: #655;
+			background-image: 
+			radial-gradient(tan 30%,transparent 0);
+			background-size: 30px 30px;
+		}
+		.box4{
+			background: #655;
+			background-image:radial-gradient(tan 30%,transparent 0),
+			radial-gradient(tan 30%,transparent 0);
+			background-size: 30px 30px;
+			background-position: 0 0,15px 15px;
+		}
+		.box5{
+			background: #eee;
+			background-image: linear-gradient(45deg,#bbb 25%,transparent 0),
+			linear-gradient(45deg,transparent 75%,#bbb 0),
+			linear-gradient(45deg,#bbb 25%,transparent 0),
+			linear-gradient(45deg,transparent 75%,#bbb 0);
+			background-position: 0 0,15px 15px,15px 15px,30px 30px;
+			background-size: 30px 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+			<div class="box">
+				等宽的网格背景
+			</div>
+			<div class="box1">
+				1px分隔线的网格背景
+			</div>
+			<div class="box2">
+				由不同的分隔线组成的网格背景
+			</div>
+			<div class="box3">
+				波点
+			</div>
+			<div class="box4">
+				波点改进
+			</div>
+			<div class="box5">
+				棋盘
+			</div>
+	</div>
+
+</body>
+</html>

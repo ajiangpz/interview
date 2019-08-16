@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点我</button>
+    <script>
+        function debounce(fn, delay) {
+            var timer = null
+            console.log(+new Date() + ' debounce函数执行了')
+            //这个语句只会执行一次，在同步代码执行的时候调用，返回了一个函数，
+            //这个函数作为事件处理函数，以后的事件触发都会调用这个返回的函数
+            return function () {
+                console.log(+new Date())
+                clearTimeout(timer) //清空上一个定时器，重新开启一个定时器
+                timer = setTimeout(function () {
+                    fn.call(this)
+                }, delay)
+                //思路：触发了dobounece返回的函数之后，清除之前的定时器，重新开启一个定时器
+                //嵌套函数的作用：一旦事件函数触发，形成闭包，使timer保留在内存中，使得每一次事件触发
+                //都能获取上次的timer
+                //也就是等待用户最后一个操作结束后 delay 时间内，不执行任何操作，过了这个时间
+                //再执行操作
+            }
+        }
+
+        function debounce1(fn, delay) {
+            return function () {
+                clearTimeout(window.timer)
+                window.timer = setTimeout(function () {
+                    fn.call(this)
+                }, delay)
+            }
+
+        }
+        //onclick需要一个回调函数，而dobounce1执行完后返回的是undefined，因此不会执行回调
+        document.getElementById("btn").onclick =
+            debounce1(function () {
+                console.log('我执行了' + new Date())
+
+            }, 2000)
+    </script>
+</body>
+
+</html>

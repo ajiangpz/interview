@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        /*后代选择器
+        X Y
+        */
+        .c p {
+            background: red;
+        }
+
+        /*在 X后选择第一个兄弟节点中选择满足Y条件的元素
+        X+Y
+        */
+        .c p+div {
+            /* 选择p标签后的第一个兄弟节点且这个节点是div*/
+            background: gold;
+        }
+
+        /*X>Y 选择X的子元素中满足Y条件的元素*/
+        .c>.p3 {
+            background: green;
+        }
+
+        /*X~Y 选择X之后所有兄弟节点满足Y的元素*/
+        .c .p4~.p5 {
+            background: yellow;
+        }
+
+        /*X[attr]选择X中具有attr属性的元素*/
+        div[title] {
+            font-size: 20px;
+            color: aqua;
+        }
+
+        /* X[attr=value]选择X attr属性等于value的元素*/
+        div[title="p7"] {
+            font-size: 20px;
+            color: red;
+        }
+
+        /* 选择单选框或者复选框选中时的元素*/
+        .p8 input:checked {
+            opacity: 0.3;
+        }
+
+        /* 伪类*/
+        /* nth-child(an+b) 选择前面具有an+b个兄弟节点的元素，其中n>=0*/
+        .p9 .c1:nth-child(2n+1) {
+            background: red;
+        }
+
+        .p9 .c1:nth-child(2n) {
+            background: green;
+        }
+
+        .title {
+            padding: 15px;
+            display: inline-block;
+            font-size: 20px;
+
+        }
+
+        /*nth-type(an+b)选择前面an+b个具有相同标签兄弟节点的元素的元素 */
+        .p10 p:nth-of-type(2n) {
+            background: red;
+        }
+
+        .p10 p:nth-of-type(2n+1) {
+            background: green;
+        }
+
+        /* X:first-child*/
+        .p11 .c1:first-child {
+            background: red;
+        }
+
+        /* X:first-of-type*/
+        .p12 p:first-of-type {
+            background: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="c">
+        <p class="p1">
+            <span class="s1">1</span>
+        </p>
+        <div class="p2">
+            <h3>标题</h3>
+            <p>内容</p>
+        </div>
+        <div class="p3">
+            <span class="s1">3</span>
+        </div>
+        <div class="p4">
+            <span class="s1">4</span>
+        </div>
+        <div class="p5">
+            <p class="p3"></p>
+            <span class="s1">选中.P4后面的具有.p5样式的元素 .p4~.p5</span>
+        </div>
+        <div class="p5">
+            <span class="s1">选中.P4后面的具有.p5样式的元素 .p4~.p5</span>
+        </div>
+        <div class="p6" title="p6">
+            <span class="s1">选中具有title属性的标签[attr]</span>
+        </div>
+        <div class="p7" title="p7">
+            <span class="s1">选中title属性为p7的标签[attr=value]</span>
+        </div>
+        <div class="p8">
+            <input type="radio" value="male" checked="checked" name="gender">male
+            <input type="radio" value="female" name="gender">female
+        </div>
+
+    </div>
+    <span class="title">-------伪类,nth-child（）实现隔行换色---------</span>
+    <div class="p9">
+        <p class="c1">1</p>
+        <p class="c1">1</p>
+        <p class="c1">1</p>
+        <p class="c1">1</p>
+        <p class="c1">1</p>
+        <p class="c1">1</p>
+    </div>
+    <span class="title">-------伪类，nth-type()实现隔行显示-------</span>
+    <div class="p10">
+        <p>123</p>
+        <p>234</p>
+        <p>456</p>
+        <p>567</p>
+    </div>
+    <span class="title">-------X:first-child------</span>
+    <div class="p11">
+        <p class="c1">选中满足X选择器且是其父元素第一个子代的元素</p>
+        <p class="c1">我不是第一个子元素</p>
+    </div>
+    <span class="title">------X:first-of-type------</span>
+    <div class="p12">
+        <p class="c2">选中满足X选择器且是此类型的第一个的元素</p>
+    </div>
+</body>
+
+</html>

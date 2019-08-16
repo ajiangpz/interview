@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>禁止输入</title>
+</head>
+
+<body>
+    <input type="text" value="禁止输入" disabled>
+    <input type="text" value="禁止输入" id="input">
+    <script>
+        let oInput = document.getElementById('input')
+        oInput.onfocus = function () {
+            console.log('onfocus')
+            this.blur()
+        }
+    </script>
+</body>
+
+</html>

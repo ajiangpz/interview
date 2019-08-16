@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rollContent" class="rollContent" data-rwidth="100" data-rheight="100">
+        1111111111111
+        2222222222222
+        3333333333333
+        4444444444444
+        5555555555555
+        6666666666666
+    </div>
+    <script>
+        let setCss = function (_this, cssOptions) {
+            if (!_this || _this.nodeType === 3 || _this.nodeType === 8 || !_this.style) {
+                return
+            }
+            for (var i in cssOptions) {
+                _this.style[i] = cssOptions[i]
+            }
+            return _this
+        }
+        let rollContent = document.getElementById('rollContent')
+        setCss(rollContent, {
+            "position": 'relative',
+            "overflow": 'hidden',
+            "wordWrap": 'break-word',
+            "wordBreak": 'break-all',
+            "width": rollContent.getAttribute('data-rwidth') + 'px',
+            "height": rollContent.getAttribute('data-rheight') + 'px'
+        })
+        let _div = rollContent.innerHTML
+        rollContent.innerHTML = `<div id='rollContent_roll'>${_div}<div>`
+        let timerRoll = document.getElementById('rollContent_roll')
+        let _h = timerRoll.offsetHeight
+        let timeOutRoll = function (_this) {
+            let _h = timerRoll.offsetHeight,
+                _t = parseInt(timerRoll.style.top, 10),
+                _tt = _h > Math.abs(_t) || _t >= 0 ? _t - 10 : (_h || 0);
+            setCss(timerRoll, {
+                'top': _tt + 'px'
+            })
+            setTimeout(timeOutRoll, 200)
+
+        }
+        console.log(rollContent.getAttribute('data-rheight'))
+        if (_h > rollContent.getAttribute('data-rheight')) {
+            timeOutRoll()
+        }
+        setCss(timerRoll, {
+            "position": 'relative',
+            "top": '0'
+        })
+    </script>
+</body>
+
+</html>

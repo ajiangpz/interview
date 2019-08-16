@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age, salary) {
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        function f1(person) {
+            // var person= p;
+            person.name = 'ls'
+            person = new Person('aa', 18, 10)
+        }
+        var p = new Person('zs', 18, 20);
+        console.log(p.name)
+        f1(p)
+        console.log(p.name)
+        //分析:引用类型的数据，如数组，对象都放在堆内存中，而在栈内存中存放他们的引用，以增强数据的可复用性。
+        //题目所述，Person存在堆中，p是Person的一个引用，存在栈中。执行 f1 时，在栈内存中有两个Person的应用
+        //即两个指向Person的指针，person.name会改变堆中Person中的name,接下来new操作会使person指向队中新的Person
+        //然而 p 此刻仍然指向的时之前的 Person ,因而会打印出 ls 
+        //因此打印顺序为 zs ls
+    </script>
+</body>
+
+</html>

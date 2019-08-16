@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <style>
+    .remainingCharacters {
+        color: aqua;
+      }
+    </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <textarea type="text" data-length="150" id="remainingCharacters" data-remainingCharacters="charActers1,charActers2"
+    data-model="Ch" name="remainingCharaters"></textarea><br />
+  <p>
+    还可以输入<span class="remainingCharacters" id="charActers1">20</span>个字符
+  </p>
+  <script>
+    //正则表达式检测中文
+    //_v.match(/[\u4e00-\u9fa5]/g)
+    var inputNode = document.getElementById("remainingCharacters"),
+      ramainCharNode = document.getElementById("charActers1"),
+      strLen = (function () {
+        //去除字符串两边的空格
+        //参数:str,返回值：去除空格后的字符串
+        function trim(str) {
+          var re = /^(\s|\u00a0)+|(\s|\u00a0)+$/;
+          return str.replace(re, "");
+        }
+        //用来检测有多少中文字符的函数
+        //参数：输入框的值,输入的模式默认是中文
+        //输出:值的长度，一个中文字符算两位英文字符
+        return function (_value, _model) {
+          //没有计算中文之前，一个字符占一位
+          var enLen = _value.trim(_value);
+
+          if (enLen.length === 0) {
+            return 0;
+          } else {
+            //计算中文字符的个数
+            var chLen = _value.match(/[\u4e00-\u9fa5]/g);
+            return enLen.length + (!chLen ? 0 : chLen.length);
+          }
+        };
+      })(),
+      sliceStr = function (_this) {
+        var _value = _this.value,
+          dataLen = _this.getAttribute("data-length"),
+          dataModel = _this.getAttribute("data-model"),
+          valueLen = strLen(_value, dataModel),
+          chLen = _value.match(/[\u4e00-\u9fa5]/g);
+        if (valueLen > dataLen) {
+          _this.value = _value.substr(
+            0,
+            dataLen - (!chLen ? 0 : chLen.length)
+          );
+          ramainCharNode.innerHTML = "0";
+        } else {
+          ramainCharNode.innerHTML = dataLen - valueLen;
+        }
+      };
+    inputNode.onkeyup = function () {
+      sliceStr(this);
+    };
+    inputNode.onfocus = function () {
+      sliceStr(this);
+    };
+    inputNode.blur = function () {
+      sliceStr(this);
+    };
+  </script>
+</body>
+
+</html>

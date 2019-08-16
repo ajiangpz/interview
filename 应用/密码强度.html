@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>实时显示密码强度</h2>
+    <input type="password" data-hint="请输入密码" id="passwordStrength">
+    <span id="showStrength"></span>
+    <script>
+        //密码强度:长度小于6的，密码太短
+        //长度大于6，强度小于10的，密码弱
+        //大于6，强度小于15的，密码中
+        //大于6，强度高于15的，密码强
+        function trim(str) {
+            return str.replace(/^(\s|\u00a0)|(\s|\u00a0)+$/, "")
+        }
+
+        function setCss(_this, cssOptions) {
+            if (!_this || _this.nodeType === 3 || _this.nodeType === 8 || !_this.style) {
+                return
+            }
+            for (var cs in cssOptions) {
+                _this.style[cs] = cssOptions[cs]
+            }
+            return _this
+        }
+
+        function charStrength(char) {
+            if (char >= 48 && char <= 57) {
+                return 1
+            } else if (char >= 97 && char <= 122) {
+                return 2
+            } else {
+                return 3
+            }
+        }
+        let pwNode = document.getElementById('passwordStrength')
+        let psNode = document.getElementById('showStrength')
+        pwNode.onkeyup = function () {
+            let colors = ['red', 'yellow', 'orange', 'green']
+            let msgs = ['密码太短', '弱', '中', '强']
+            let _strength = 0
+            let _value = trim(this.value),
+                len = _value.length;
+            if (len < 6) {
+                setCss(psNode, {
+                    "color": colors[0]
+                })
+                psNode.innerText = msgs[0]
+            } else {
+                for (let i = 0; i < len; i++) {
+                    _strength += charStrength(_value.toLocaleLowerCase().charCodeAt(i))
+                }
+                if (_strength < 10) {
+                    psNode.innerText = msgs[1]
+                    css.setCss(psNode, {
+                        "color": colors[1]
+                    })
+                } else if (_strength < 15) {
+                    psNode.innerText = msgs[2]
+                    css.setCss(psNode, {
+                        "color": colors[2]
+                    })
+                } else {
+                    psNode.innerText = msgs[3]
+                    css.setCss(psNode, {
+                        "color": colors[3]
+                    })
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //值类型传递
+        var num1 = 55,
+            num2 = 66;
+
+        function f1(num, num1) {
+            //var num=传进来的num1;
+            //var num1=传进来num2
+            num = 100;
+            num1 = 100; //本作用域内已经有num1了，即函数的参数，所以外部的num1不会变
+            num2 = 100; //注意，此时函数的参数并没有num2，因而会往父级作用域找num2，即window的num2会变成100
+            console.log(num); //100
+            console.log(num1); //100
+            console.log(num2) //100
+        }
+        f1(num1, num2);
+        console.log(num1) //此时的作用域是全局，因而打印window中的num1，因而打印55
+        console.log(num2) //同理，但是num2已经在f1中改变，因而打印100
+        //分析：函数是按值传递的，函数的参数相当于在该函数的作用域内定义对应的变量
+        //打印的顺序应该是100，100，100，55，100
+    </script>
+</body>
+
+</html>

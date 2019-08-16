@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Jsonp</title>
+</head>
+
+<body>
+  <button onclick="sentJsonp()">点击发送jsonp</button>
+  <script>
+    function handler(res) {
+      console.log(typeof res)
+      console.log(res.value+','+res.name)
+    }
+
+    function sentJsonp() {
+      var script = document.createElement('script');
+      script.src = 'http://localhost:3000/hello/?callback=handler';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+  </script>
+</body>
+
+</html>f

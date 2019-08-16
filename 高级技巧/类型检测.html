@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>类型检测</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		var fn1=function(){
+			console.log('aaaaaaaaa')
+		}
+		function person(){
+			this.name='pzzzz';
+			this.age=22;
+		}
+		var reg=/'a'/;
+		console.log(typeof fn1)
+		console.log(typeof reg)
+		var str=Object.prototype.toString.call(reg);
+		var str1=Object.prototype.toString.call(person);
+		console.log(str,str1);
+		var obj={
+			name:'pzzz',
+			age:22
+		}
+		console.log(window.JSON&&Object.prototype.toString.call(JSON)==='[object JSON]')//是不是原生的json对象
+		console.log(JSON)
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1 {
+            width: .1rem;
+            height: .1rem;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1"></div>
+    <script>
+        window.onload = function () {
+            //1物理像素=1css像素/dpr 物理像素是绝对单位，css是相对单位
+            var dpr = window.devicePixelRatio; //获取设备的dpr系数
+            //dpr为1时，css像素就相当于物理像素
+            //dpr>1时，css像素在设备上会被放大，例如dpr=2时，实际的物理像素时 2*css像素
+            //将viewport缩小dpr倍，就相当于将dpr设置为1，这样就可以保留1px的物理像素
+            var metaNode = document.querySelector('meta[name="viewport"]');
+            metaNode.setAttribute('content', "width=device-width, initial-scale=" + 1 / dpr)
+            //此时元素其他的长度也会缩小，为了不是其他长度缩小，可以使用rem
+            var htmlNode = document.querySelector('html');
+            console.log(document.documentElement.clientWidth)
+            htmlNode.style.fontSize = document.documentElement.clientWidth + 'px '
+        }
+    </script>
+</body>
+
+</html>

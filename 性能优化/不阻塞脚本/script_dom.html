@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrip_dom</title>
+  <link rel="stylesheet" href="http://localhost:3000/a.css">
+</head>
+
+<body>
+  <!-- <script src="http://localhost:3000/jquery.js"></script> -->
+  <script>
+    var scriptTag = document.createElement('script');
+    scriptTag.src = 'http://localhost:3000/jquery.js';
+    document.getElementsByTagName('head')[0].appendChild(scriptTag);
+    var scriptTag = document.createElement('script');
+    scriptTag.src = 'http://localhost:3000/a.js';
+    document.getElementsByTagName('head')[0].appendChild(scriptTag);
+    var scriptTag = document.createElement('script');
+    scriptTag.src = 'http://localhost:3000/b.js';
+    document.getElementsByTagName('head')[0].appendChild(scriptTag);
+  </script>
+</body>
+
+</html>

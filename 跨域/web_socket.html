@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>web_socket</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var socket=new WebSocket('ws://localhost:3000/socket');
+		sendMessage(socket,'server,hello',function(sck,msg){
+			sck.send(msg);
+			console.log('send')
+		})
+		socket.onopen=function(event){
+			console.log('open')
+		}
+		socket.onmessage=function(event){
+			console.log('message');
+			console.log(event.data);
+		}
+		socket.onclose=function(event){
+			console.log('close')
+		}
+		function sendMessage(sck,msg,cb){
+				
+
+			if(sck.readyState===1){
+				// console.log(sck.readyState)
+				cb(sck,msg);
+			}	
+			else{
+				setTimeout(function(){
+					sendMessage(sck,msg,cb)
+				},100)
+			}
+		}	f
+	</script>
+</body>
+</html>

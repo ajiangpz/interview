@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .p {
+            width: 400px;
+            height: 400px;
+            background: red;
+            margin-bottom: 10px;
+        }
+
+        .s {
+            width: 200px;
+            height: 200px;
+            background: green;
+        }
+
+        .p1 {
+            position: relative;
+        }
+
+        .s1 {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        .p2 {
+            position: relative;
+        }
+
+        .s2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .p3 {
+            position: relative;
+        }
+
+        .s3 {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .p4 {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .s4 {
+            margin: 0 auto;
+            vertical-align: middle;
+        }
+
+        .p5 {
+            outline: none;
+            border: none;
+            text-align: center;
+        }
+
+        .s5 {
+            display: inline-block;
+        }
+
+        .p6 {
+            line-height: 400px;
+            text-align: center;
+        }
+
+        .s6 {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>绝对定位实现居中</h1>
+    <h3>通过计算宽高来设置top，left</h3>
+    <div class="p p1">
+        <div class="s s1"></div>
+        <!--适合已经知道宽高的元素-->
+    </div>
+    <h3>通过百分比来设置top,left,通过css3来控制实现偏移</h3>
+    <div class="p p2">
+        <div class="s s2"></div>
+    </div>
+    <h3>通过绝对居中来实现居中</h3>
+    <div class="p p3">
+        <div class="s s3"></div>
+    </div>
+    <h1>元素特性实现居中</h1>
+    <h3>table-cell</h3>
+    <div class="p p4">
+        <div class="s s4"></div>
+    </div>
+    <h3>botton</h3>
+    <button class="p p5">
+        <div class="s s5"></div>
+    </button>
+    <h3>line-height</h3>
+    <div class="p p6">
+        <div class="s s6"></div>
+    </div>
+    <div class="p p4">
+        <img src="./cusi.jpg" alt="猝死" class="s4">
+    </div>

@@ -1,0 +1,32 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body,html{
+	width: 100%;
+	height: 100%;
+}
+.p{
+	display: table;
+	width: 100%;
+	height: 500px;
+	border-spacing: 10px;
+	border-collapse: separate;
+	/* 后面两个属性用于设置三个子元素的间隔，该属性只能用于表*/
+}
+.l,.r,.center{
+	display: table-cell;
+}
+.l{				
+	width: 200px;
+	height: 100%;
+	background-color: green;
+}
+.r{
+	width: 200px;
+	height: 100%;
+	background-color: blue;
+}
+.center{
+	background-color: yellow;
+}

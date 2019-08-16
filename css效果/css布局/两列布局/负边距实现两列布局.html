@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        .left {
+            float: left;
+            width: 200px;
+            height: 100%;
+            background: red;
+        }
+
+        .right-fix {
+            float: right;
+            width: 100%;
+            height: 100%;
+            margin-left: -200px;
+        }
+
+
+        .right {
+            margin-left: 200px;
+            background: green;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left"></div>
+    <div class="right-fix">
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

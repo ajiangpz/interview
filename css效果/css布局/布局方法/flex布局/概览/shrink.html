@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.box{
+			display: flex;
+			width: 100px;
+			height: 100px;
+		}
+		.box>div:nth-child(1){
+			width: 100px;
+			height: 100%;
+			flex-shrink: 1;
+			background-color: green;
+		}
+		.box>div:nth-child(2){
+			width: 200px;
+			height: 100%;
+			flex-shrink: 2;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>

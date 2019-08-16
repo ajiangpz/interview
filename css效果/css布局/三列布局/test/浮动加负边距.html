@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		/*
+			思路: 首先，想要一行三列，这三个元素必须是要是行内元素或者有行内元素的性质
+			浮动可以满足将块状元素变为行内元素
+			其次，想要自适应，就必须有一个元素的宽高是100%,而且是相对与屏幕的宽高
+			最后，固定宽度的两个元素需要通过各种方式将自己的位置放到合适的位置
+			方式有
+			1.负边距+浮动
+				a.双飞翼布局
+				b.圣杯布局
+			2.绝对定位 
+			3.元素的特性 table,table-cell
+			4.弹性盒子 flex
+			
+		*/
+		.c-container{
+			width: 100%;
+			height: 100%;
+			
+		}
+		.c{
+			height: 100%;
+			padding: 0 200px 0 100px;
+			background-color: yellow;
+		}
+		.l{
+			height: 100%;
+			width: 100px;
+			float: left;
+			margin-left: -100%;
+			background-color: green;
+		}
+		.r{
+			height: 100%;
+			width:200px;
+			float: right;
+			margin-left: -200px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="c-container">
+		<div class="c">中间</div>
+	</div>
+	<div class="l">左栏</div>
+	<div class="r">右栏</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 500%;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //什么是函数节流
+    //为了避免函数重复执行？只有当上一次函数执行后过了规定的间隔，才能重新执行该函数
+    //也即在多次触发函数的情况下，执行首次操作，而函数防抖则是在多次触发的情况下，执行最后一次操作
+    function Throttle(fn, delay) {
+
+    }
+
+    function Throttle(fn, delay) {
+      var lastTime = 0;
+      console.log("执行");
+      //此处使用闭包，是为了保留lastTime上一次的值
+      //每一次触发函数，先判断距离上一次触发这个函数的时间有没有超过规定的delay时间
+      //如果超过了，绑定this到要执行的函数，反之，不做任何操作，在需要频繁触发的情景可以使用
+      return function () {
+        var nowTime = new Date();
+        if (nowTime - lastTime > delay) {
+          fn.call(this);
+          lastTime = nowTime;
+        }
+      };
+    }
+    document.body.onscroll = Throttle(function () {
+      console.log("滚动的时间" + +new Date());
+    }, 1000);
+    //   document.body.onscroll = function() {
+    //     console.log(+new Date());
+    //   };
+  </script>
+</body>
+
+</html>
