@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>惰性加载函数</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<button id="btn">点击我</button>
+	<script type="text/javascript">
+		//惰性加载函数的目的，根据条件判断一次性返回函数，减少条件判断
+		var addEvent=(function(){
+			if(window.addEventListener){
+				// return window.addEventListener
+				// element.addEventListener(type,func,false)
+				return function(el,type,fun){
+					console.log('no-ie')
+					el.addEventListener(type,fun,false)
+				}
+			}
+			else if(window.attachEvent){
+				// return window.attachEvent;
+				return function(el,type,fun){
+					console.log("ie")
+					el.attachEvent("on"+type,fun,false);
+				}
+			}else{
+				return function(el,type,fun){
+					console.log('normal')
+					el["on"+type]=fun;
+				}
+			}
+		})()
+
+		var addEventFirstInvoke=function(el,type,fun){
+			if(window.addEventListener){
+				addEventFirstInvoke=function(el,type,fun){
+					el.addEventListener(type,fun,false);
+				}
+			}
+			else if(window.attachEvent){
+				addEventFirstInvoke=function(el,type,fun){
+					el.attachEvent("on"+type,fun,false);
+				}
+			}else{
+				addEventFirstInvoke=function(el,type,fun){
+					el["on"+type]=fun;
+				}
+			}
+			return	addEventFirstInvoke(el,type,fun);
+		}
+		var btn=document.getElementById("btn");
+		// addEvent(btn,"click",function(){
+		// 	alert("click")
+		// })
+		addEventFirstInvoke(btn,"click",function(){
+			alert("click")
+		})
+	</script>
+</body>
+</html>
